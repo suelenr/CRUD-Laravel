@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow">
-                <div class="card-header">Product List</div>
+                <div class="card-header">PRODUCT LIST</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -20,7 +20,6 @@
                     </br></br>
                     <table class="table table-hover table-striped">
                         <thead>
-                        <th>N#</th>
                         <th>Name</th>
                         <th>Preço</th>
                         <th>Categoria</th>
@@ -29,19 +28,36 @@
                         <tbody>
                             @foreach($products as $product)
                                 <tr>
-                                    <td>@if($product->photo)
-                                            <img src="{{ $product->photo_url }}" alt="{{ $product->name }}" class="rounded mg-fluid"/>
-                                        @endif
-                                    </td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->description }}</td>
                                     <td>
-                                        <a class="icon" href="{{ url('/') }}"><img src="img/icons-view.png" alt="View Product" width="30" height="30"></a>
-                                        <a class="icon" href="{{ url('/') }}"><img src="img/icons-edit.png" alt="Edit Product" width="30" height="30"></a>
-                                        <a class="icon" href="{{ url('/') }}"><img src="img/icons-delete.png" alt="Delete Product" width="30" height="30"></a>
+                                        <button class="btn btn-icon btn-xs" data-toggle="modal" data-target="#viewProduct">🔍</button>
+                                        <button class="btn btn-icon btn-xs" onclick="window.location.href='{{ route('products.edit', $product) }}';">✎</button>
+                                        <button class="btn btn-icon btn-xs" data-toggle="modal" data-target="#confirmDelete">❌</button>
                                     </td>
                                 </tr>
+
+                                <!-- Modal Delete -->
+                                <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="confirmDeleteModalLabel">DELETING</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete <b>{{$product->name}}</b>?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
                             @endforeach 
                         </tbody>
                     </table>

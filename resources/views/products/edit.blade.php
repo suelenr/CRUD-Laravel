@@ -12,22 +12,26 @@
                 </div>
             @endif
             <div class="card shadow">
-            <div class="card-header">Product {{ $product->name }}</div>
+            <div class="card-header">EDITING <b>{{ $product->name }}</b></div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" action="{{ route('products.store') }}">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('products.update', $product) }}">
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" value="{{old('name')}}" name="name" class="form-control"/>
+                            <input type="text" value="{{ old('name') ?? $product->name }}" name="name" class="form-control"/>
                             
                             <label>Description</label>
-                            <textarea rows="6" name="description" class="form-control">{{old('description')}}</textarea>
+                            <textarea rows="6" name="description" class="form-control">{{ old('description') ?? $product->description }}</textarea>
                            
                             <label>Price</label>
-                            <input type="text" value="{{old('price')}}" name="price" class="form-control"/>
+                            <input type="text" value="{{ old('price') ?? $product->price }}" name="price" class="form-control"/>
 
                             <label>Image</label>
                             <input type="file" name="photo" class="form-control custom-file"/>
+                            @if($product->photo)
+                                <img src="{{ $product->photo_url }}" alt="{{ $product->name }}" class="rounded mg-fluid"/>
+                            @endif
                         </div>
                         <button class="btn btn-primary">Save</button>
                         <a href="{{ route('products.index') }}" class="ml-auto btn btn-secondary">Cancel</a>

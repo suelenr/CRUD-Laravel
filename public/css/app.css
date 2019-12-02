@@ -2903,6 +2903,11 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
+.btn-icon {
+  background-color: transparent;
+  border-color: transparent;
+}
+
 .btn-primary {
   color: #fff;
   background-color: var(--green);

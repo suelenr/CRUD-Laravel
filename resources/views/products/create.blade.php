@@ -12,7 +12,7 @@
                 </div>
             @endif
             <div class="card shadow"> 
-                <div class="card-header">New Product</div>
+                <div class="card-header">NEW PRODUCT</div>
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data" action="{{ route('products.store') }}">
                         @csrf
