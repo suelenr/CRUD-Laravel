@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container">
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow">
@@ -32,9 +37,11 @@
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->description }}</td>
                                     <td>
-                                        <button class="btn btn-icon btn-xs" data-toggle="modal" data-target="#viewProduct">🔍</button>
-                                        <button class="btn btn-icon btn-xs" onclick="window.location.href='{{ route('products.edit', $product) }}';">✎</button>
-                                        <button class="btn btn-icon btn-xs" data-toggle="modal" data-target="#confirmDelete">❌</button>
+                                        <div class="d-flex">
+                                            <button class="btn btn-icon btn-xs" data-toggle="modal" data-target="#viewProduct">🔍</button>
+                                            <button class="btn btn-icon btn-xs" onclick="window.location.href='{{ route('products.edit', $product) }}';">✎</button>
+                                            <button class="btn btn-icon btn-xs" data-toggle="modal" data-target="#confirmDelete">❌</button>
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -52,8 +59,13 @@
                                         Are you sure you want to delete <b>{{$product->name}}</b>?
                                     </div>
                                     <div class="modal-footer">
+                                        <form action="{{ route('products.destroy', $product) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-danger">Delete</button>
+                                        
                                     </div>
                                     </div>
                                 </div>

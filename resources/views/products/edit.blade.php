@@ -11,6 +11,11 @@
                     @endforeach
                 </div>
             @endif
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="card shadow">
             <div class="card-header">EDITING <b>{{ $product->name }}</b></div>
                 <div class="card-body">
@@ -30,10 +35,10 @@
                             <label>Image</label>
                             <input type="file" name="photo" class="form-control custom-file"/>
                             @if($product->photo)
-                                <img src="{{ $product->photo_url }}" alt="{{ $product->name }}" class="rounded mg-fluid"/>
+                                <img src="{{ $product->photo_url }}" alt="{{ $product->name }}" class="rounded mg-fluid img-thumbnail""/>
                             @endif
                         </div>
-                        <button class="btn btn-primary">Save</button>
+                        <button class="btn btn-primary">Update</button>
                         <a href="{{ route('products.index') }}" class="ml-auto btn btn-secondary">Cancel</a>
                     </form>
                 </div>

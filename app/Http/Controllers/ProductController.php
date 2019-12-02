@@ -23,10 +23,6 @@ class ProductController extends Controller
         return view('products.edit', compact('product'));
     }
 
-    public function delete (Product $product){
-        return view('products.delete', compact('product'));
-    }
-
     public function store (Request $request){
         $values = $this->validate($request,[
             'name' => 'required|unique:products',
@@ -60,4 +56,14 @@ class ProductController extends Controller
          ->with(compact('product'))
          ->with('success','Product successfully updated.');
     }
+
+    public function destroy (Product $product){
+        $product->delete();
+        if($product->photo){
+            Storage::disk('public')->delete($product->photo);
+        }
+        return redirect()->back()
+            ->with('success','Product successfully deleted.');
+    }
+    
 }
