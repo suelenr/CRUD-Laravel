@@ -28,6 +28,7 @@ class ProductController extends Controller
             'name' => 'required|unique:products',
             'description' => 'required',
             'price' => 'required',
+            //'category_id' => 'required',
             'photo' => 'sometimes|file|image',
         ]);
 
@@ -41,6 +42,7 @@ class ProductController extends Controller
             'name' => ['required',Rule::unique('products')->ignoreModel($product)],
             'description' => 'required',
             'price' => 'required',
+            //'category_id' => 'required',
             'photo' => 'sometimes|file|image',
         ]);
 

@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
@@ -19,17 +14,21 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->text('photo')->nullable();
             $table->float('price');
+            /*$table->unsignedBigInteger('category_id')->index();
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade');*/
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('products', function (Blueprint $table) {
+            //$table->dropForeign(['category_id']);
+            //$table->dropColumn('category_id');
+        });
     }
 }

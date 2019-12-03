@@ -26,6 +26,9 @@
                             <label>Price</label>
                             <input type="text" value="{{old('price')}}" name="price" class="form-control"/>
 
+                            <!--<label>Category</label>
+                            <input type="text" name="category" class="form-control custom-file"/>-->
+
                             <label>Image</label>
                             <input type="file" name="photo" class="form-control custom-file"/>
                         </div>

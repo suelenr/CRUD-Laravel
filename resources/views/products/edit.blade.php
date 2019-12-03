@@ -32,6 +32,9 @@
                             <label>Price</label>
                             <input type="text" value="{{ old('price') ?? $product->price }}" name="price" class="form-control"/>
 
+                            <!--<label>Category</label>
+                            <input type="file" value="{{ old('category') ?? $product->category }}" name="category" class="form-control custom-file"/>-->
+
                             <label>Image</label>
                             <input type="file" name="photo" class="form-control custom-file"/>
                             @if($product->photo)
