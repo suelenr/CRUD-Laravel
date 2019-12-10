@@ -34,15 +34,15 @@
                         <thead>
                         <th>Name</th>
                         <th>Preço</th>
-                        <th>Description</th>
+                        <th>Category</th>
                         <th colspan="3" align="center">Actions</td>
                         </thead>
                         <tbody>
-                            @foreach($products as $product)
+                            @foreach($products as $product)   
                                 <tr>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>
-                                    <td>{{ $product->description }}</td>
+                                    <td>{{ $product->categories->name }}</td>
                                     <td>
                                         <div class="d-flex">
                                             <button class="btn btn-icon btn-xs" data-toggle="modal" data-target="#viewProduct">🔍</button>
@@ -138,7 +138,7 @@
                                         
                                     </div>
                                     </div>
-                                </div>
+                                </div>                            
                             @endforeach 
                         </tbody>
                     </table>

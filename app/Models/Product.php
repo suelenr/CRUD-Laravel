@@ -15,7 +15,7 @@ class Product extends Model
         'description',
         'price',
         'photo',
-        //'category_id',
+        'category_id',
     ];
 
     public function getPhotoUrlAttribute(){
@@ -24,7 +24,7 @@ class Product extends Model
         }
     } 
 
-   /* public function hasCategory(){
+   public function hasCategory(){
         return $this->belongsTo('App\Models\Category');
-    }*/
+    }
 }

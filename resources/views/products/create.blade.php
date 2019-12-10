@@ -30,13 +30,13 @@
                                     <td><label>Price</label></td>
                                     <td><input type="text" value="{{old('price')}}" name="price" onkeyup="onlyNumbers(this);" class="form-control"/></td>
                                 </tr>
-                                <!--<tr>
-                                    <<td>label>Category</label></td>
-                                    <td><input type="text" name="category" class="form-control custom-file"/></td>
+                                <tr>
+                                    <td><label>Category</label></td>
+                                    <td><input type="text" value="{{old('category')}}" name="category" class="form-control custom-file"/></td>
                                 </tr>
                                 <tr>
                                     <td><span><select name="category_span" style="max-width:350px;"></select></span></td>
-                                </tr>-->
+                                </tr>
                                 <tr>
                                     <td><label>Image</label></td>                         
                                     <td><input type="file" name="photo" id="input-file" class="form-control custom-file" accept="image/*"/></td>

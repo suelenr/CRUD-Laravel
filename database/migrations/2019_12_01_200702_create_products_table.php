@@ -14,11 +14,11 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->text('photo')->nullable();
             $table->float('price');
-            /*$table->unsignedBigInteger('category_id')->index();
+            $table->unsignedBigInteger('category_id')->index();
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories')
-                ->onDelete('cascade');*/
+                ->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,8 +27,8 @@ class CreateProductsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('products', function (Blueprint $table) {
-            //$table->dropForeign(['category_id']);
-            //$table->dropColumn('category_id');
+            $table->dropForeign(['category_id']);
+            $table->dropColumn('category_id');
         });
     }
 }

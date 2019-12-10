@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function index (Request $request){
         return view('products.index',[
-            'products'=>Product::orderBy('name')->paginate(),
+            'products'=>Product::join('categories', 'products.category_id', '=', 'categories.id')->orderBy('products.name')->paginate(),
         ]);
     }
 
@@ -28,7 +28,7 @@ class ProductController extends Controller
             'name' => 'required|unique:products',
             'description' => 'required',
             'price' => 'required',
-            //'category_id' => 'required',
+            'category_id' => 'required',
             'photo' => 'sometimes|file|image',
         ]);
 
@@ -43,7 +43,7 @@ class ProductController extends Controller
             'name' => ['required',Rule::unique('products')->ignoreModel($product)],
             'description' => 'required',
             'price' => 'required',
-            //'category_id' => 'required',
+            'category_id' => 'required',
             'photo' => 'sometimes|file|image',
         ]);
 
