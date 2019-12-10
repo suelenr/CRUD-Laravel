@@ -19,34 +19,49 @@
             <div class="card shadow">
             <div class="card-header">EDITING <b>{{ $product->name }}</b></div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" action="{{ route('products.update', $product) }}">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" value="{{ old('name') ?? $product->name }}" name="name" class="form-control"/>
-                            
-                            <label>Description</label>
-                            <textarea rows="6" name="description" class="form-control">{{ old('description') ?? $product->description }}</textarea>
-                           
-                            <label>Price</label>
-                            <input type="text" value="{{ old('price') ?? $product->price }}" name="price" class="form-control"/>
-
-                            <!--<label>Category</label>
-                            <input type="file" value="{{ old('category') ?? $product->category }}" name="category" class="form-control custom-file"/>-->
-
-                            <label>Image</label>
-                            <input type="file" name="photo" class="form-control custom-file"/>
-                            @if($product->photo)
-                                <img src="{{ $product->photo_url }}" alt="{{ $product->name }}" class="rounded mg-fluid img-thumbnail""/>
-                            @endif
-                        </div>
-                        <button class="btn btn-primary">Update</button>
-                        <a href="{{ route('products.index') }}" class="ml-auto btn btn-secondary">Cancel</a>
-                    </form>
+                    <table class="table table-bordered" align="center">
+                        <form method="POST" enctype="multipart/form-data" action="{{ route('products.update', $product) }}">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-group">
+                                <tr>
+                                    <td><label>Name</label></td>
+                                    <td><input type="text" value="{{ old('name') ?? $product->name }}" name="name" class="form-control"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Description</label></td>
+                                    <td><textarea rows="6" name="description" class="form-control">{{ old('description') ?? $product->description }}</textarea></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Price</label></td>
+                                    <td><input type="text" value="{{ old('price') ?? $product->price }}" name="price" class="form-control"/></td>
+                                </tr>
+                                <tr>
+                                    <!--<td><label>Category</label></td>
+                                    <td><input type="file" value="{{ old('category') ?? $product->category }}" name="category" class="form-control custom-file"/></td>-->
+                                </tr>
+                                <tr>
+                                    <td><label>Image</label></td>
+                                    <td><input type="file" name="photo" class="form-control custom-file"/></td>
+                                </tr>
+                                <tr>
+                                    @if($product->photo)
+                                    <td colspan=2 align="center"><img src="{{ $product->photo_url }}" alt="{{ $product->name }}" class="rounded mg-fluid img-thumbnail""/>
+                                    <a class="btn btn-icon btn-xs">Remove photo</a></td>
+                                    @endif
+                                    
+                                </tr>
+                            </div>
+                                <tr>
+                                    <td colspan=2 align="right"><button class="btn btn-primary">Update</button>
+                                    <a href="{{ route('products.index') }}" class="ml-auto btn btn-secondary">Cancel</a>
+                                </tr>
+                        </form>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+

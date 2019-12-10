@@ -34,7 +34,8 @@ class ProductController extends Controller
 
         $values['photo'] = $request->file('photo')->store('images',['disk'=>'public']);
         $product = Product::create($values);
-        return redirect(route('products.index'))->with('success', 'Product {$product->name} successfully created;');
+        return redirect(route('products.index'))
+            ->with('success', 'Product {$product->name} successfully created;');
     }
 
     public function update(Request $request, Product $product){
@@ -54,7 +55,7 @@ class ProductController extends Controller
         }
 
         $product->update($values);
-         return redirect()->back()
+         return redirect(route('products.index'))
          ->with(compact('product'))
          ->with('success','Product successfully updated.');
     }
@@ -68,4 +69,23 @@ class ProductController extends Controller
             ->with('success','Product successfully deleted.');
     }
     
+    public function deletePhoto (Product $product){  
+        dd($product->name);
+        $product->update(['photo' => null]);
+        Storage::disk('public')->delete($product->photo);
+
+        return redirect()->back()
+        ->with(compact('product'))
+        ->with('success','Photo successfully deleted.');
+    }
+
+    public function search (Request $request){
+        $search = $request->get('search');
+        $product=Product::where('name', 'like' , '%'. $search. '%')->orderBy('name')->paginate();
+ 
+        return view('products.index',['products'=>$product]);
+    }
+
+    
 }
+

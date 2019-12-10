@@ -17,4 +17,7 @@ Route::middleware('auth')->group(function(){
     Route::redirect('home','products');
     Route::redirect('/','products');
     Route::resource('products','ProductController');
+    Route::get('/search','ProductController@search');  
+    Route::get('/deletePhoto', 'ProductController@deletePhoto');
 });
+

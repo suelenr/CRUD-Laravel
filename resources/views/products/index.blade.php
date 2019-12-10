@@ -18,13 +18,17 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <a href="{{ route('products.create') }}" class="ml-auto btn btn-primary">
-                        New Product
-                    </a>
-                    <a href="{{ route('products.index') }}" class="ml-auto btn btn-primary" id="btnImport" data-toggle="modal" data-target="#importProductModal">
-                        Import Product
-                    </a>
+                    <table>
+                        <tr>
+                            <td><a href="{{ route('products.create') }}" class="ml-auto btn btn-primary">New</a></td>
+                            <td><a href="{{ route('products.index') }}" class="ml-auto btn btn-primary" id="btnImport" data-toggle="modal" data-target="#importProductModal">Import</a></td>
+                        <form action="/search" method="get">
+                            <td width="520px" align="right"><input type="search" name="search" vale="Product name" class="form-control form-control-sm"/></td>
+                            <td width="80px" align="right"><span class="form-group-btn"><button type="submit" class="btn btn-primary">Search</button></span></td>
+                            <td align="right"><a href="{{ route('products.index') }}" class="ml-auto btn btn-outline-secondary">Clean</a></td>
+                        </form>
+                        </tr>
+                    </table>
                     </br></br>
                     <table class="table table-hover table-striped">
                         <thead>
@@ -64,7 +68,7 @@
                                             <li class="text-muted text-center empty"><h4 class="mt-4 mb-5 text-muted">Drop or click in input to upload a CSV file</h4></li>
                                         </ul>
                                     </div>
-                                    <input type="file" name="file" id="input-file-zone" accept=".csv"/>
+                                    <input type="file" name="file" id="input-file-zone" accept=".csv" class="form-control form-control-file"/>
                                     </div>
                                     <div class="modal-footer">   
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -79,7 +83,6 @@
                                     <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="viewProductLabel">VIEWING</h5>
-                                        <input type="file" name="file" id="input-file-zone" accept=".csv"/>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
@@ -112,8 +115,8 @@
                                 </div>
                                 </div>
 
-                                 <!-- Modal Delete -->
-                                 <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                <!-- Modal Delete -->
+                                <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">

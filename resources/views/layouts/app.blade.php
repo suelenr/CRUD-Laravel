@@ -33,11 +33,6 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="img/logo.png" alt="Atom Funding">
                 </a>
-                <a class="nav-link" href="#" style="padding-left:800px"><img src="img/avatar.png" width="37" height="37" alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -57,7 +52,8 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                        <a class="nav-toggler" href="#"><img src="img/avatar.png" width="37" height="37" alt=""></a>
+                            <li class="nav-item dropdown">                                
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
