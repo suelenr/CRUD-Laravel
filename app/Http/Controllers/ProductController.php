@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
     public function index (Request $request){
-        return view('products.index',[
-            'products'=>Product::join('categories', 'products.category_id', '=', 'categories.id')->orderBy('products.name')->paginate(),
-        ]);
+        $products=Product::join('categories', 'products.category_id', '=', 'categories.id')
+            ->select('products.*','categories.name as category_name')
+            ->orderBy('products.name')
+            ->paginate();
+        return view('products.index',compact('products'));
     }
 
     public function create (){

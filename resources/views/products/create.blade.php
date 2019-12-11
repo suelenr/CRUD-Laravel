@@ -35,6 +35,11 @@
                                     <td><input type="text" value="{{old('category')}}" name="category" class="form-control custom-file"/></td>
                                 </tr>
                                 <tr>
+                                    <select class="form-control" name="category_item">
+                                        @foreach($categories as $category)
+                                        <option value="{{$category->name}}">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
                                     <td><span><select name="category_span" style="max-width:350px;"></select></span></td>
                                 </tr>
                                 <tr>

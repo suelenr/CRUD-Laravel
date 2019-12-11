@@ -41,13 +41,13 @@
                             @foreach($products as $product)   
                                 <tr>
                                     <td>{{ $product->name }}</td>
-                                    <td>{{ $product->price }}</td>
-                                    <td>{{ $product->categories->name }}</td>
+                                    <td>{{ $product->price }}</td>                                    
+                                    <td>{{ $product->category_name }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <button class="btn btn-icon btn-xs" data-toggle="modal" data-target="#viewProduct">🔍</button>
+                                            <button class="btn btn-icon btn-xs" data-toggle="modal" data-target="#viewProduct{{$product->id}}">🔍</button>
                                             <button class="btn btn-icon btn-xs" onclick="window.location.href='{{ route('products.edit', $product) }}';">✎</button>
-                                            <button class="btn btn-icon btn-xs" data-toggle="modal" data-target="#confirmDelete">❌</button>
+                                            <button class="btn btn-icon btn-xs" data-toggle="modal" data-target="#confirmDelete{{$product->id}}">❌</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -78,7 +78,7 @@
                                 </div>
 
                                 <!-- Modal View -->
-                                <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductLabel" aria-hidden="true">
+                                <div class="modal fade" id="viewProduct{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="viewProductLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
@@ -90,20 +90,20 @@
                                     <div class="modal-body">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input type="text" value="{{ $product->name }}" name="name" class="form-control" disabled/>
+                                        <input type="text" class="form-control" name="name" value="{{ $product->name }}" disabled/>
                                         
                                         <label>Description</label>
-                                        <textarea rows="6" name="description" class="form-control" disabled>{{ old(' description') ?? $product->description }}</textarea>
+                                        <textarea rows="6" class="form-control" name="description" disabled>{{ $product->description }}</textarea>
                                     
                                         <label>Price</label>
-                                        <input type="text" value="{{ $product->price }}" name="price" class="form-control" disabled/>
+                                        <input type="text" class="form-control" name="price" value="{{ $product->price }}" disabled/>
 
-                                        <!--<label>Category</label>
-                                        <input type="file" value="{{ old('category') ?? $product->category }}" name="category" class="form-control custom-file"/>-->
+                                        <label> Category</label>
+                                        <input type="text" class="form-control" name="category" value="{{ $product->category_name }}" disabled/>
 
                                         <label>Image</label></br>
                                         @if($product->photo)
-                                            <img src="{{ $product->photo_url }}" alt="{{ $product->name }}" class="rounded mg-fluid img-thumbnail""/>
+                                            <img src="{{ $product->photo_url }}" alt="{{ $product->name }}" class="rounded mg-fluid img-thumbnail" id="product_image"/>
                                         @endif
                                     </div>
                                     </div>
@@ -116,7 +116,7 @@
                                 </div>
 
                                 <!-- Modal Delete -->
-                                <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="confirmDelete{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
