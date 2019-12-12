@@ -41,7 +41,7 @@
                                     <td><input type="text" value="{{ old('category') ?? $product->category_name }}" name="category" class="form-control custom-file"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan=2><span><select name="category_span">
+                                    <td colspan=2 align="right"><span><select name="category_span">
                                         @foreach($categories as $category)
                                             <option value="{{$category->name}}">{{$category->name}}</option>
                                         @endforeach
