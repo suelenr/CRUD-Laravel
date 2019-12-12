@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function index (Request $request){
-        return view('products.create',[
-            'categories'=>Category::orderBy('name'),
-        ]);
+        $categories=Category::all();
+        return view('products.create',compact('categories'));
     }
 
     public function create (){

@@ -11,10 +11,14 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.min.js') }}" defer></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
     <script src="{{ asset('js/jquery.dm-uploader.min.js') }}" defer></script>
     <script src="{{ asset('js/demo-ui.js') }}" defer></script>
     <script src="{{ asset('js/demo-config.js') }}" defer></script>
     <script src="{{ asset('js/demo-config-upload.js') }}" defer></script>
+    <script src="{{ asset('js/select2.min.js') }}" defer></script>
+    <script src="{{ asset('js/select-togglebutton.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

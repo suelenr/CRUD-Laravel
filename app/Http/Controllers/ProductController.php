@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule; 
 use Illuminate\Support\Facades\Storage;
@@ -18,11 +19,13 @@ class ProductController extends Controller
     }
 
     public function create (){
-        return view('products.create');
+        $categories=Category::all()->sortBy('name');
+        return view('products.create',compact('categories'));
     }
 
     public function edit (Product $product){
-        return view('products.edit', compact('product'));
+        $categories=Category::all()->sortBy('name');
+        return view('products.edit', compact('product','categories'));
     }
 
     public function store (Request $request){

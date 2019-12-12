@@ -35,12 +35,11 @@
                                     <td><input type="text" value="{{old('category')}}" name="category" class="form-control custom-file"/></td>
                                 </tr>
                                 <tr>
-                                    <select class="form-control" name="category_item">
+                                    <td colspan=2 align="right"><span><select name="category_span">
                                         @foreach($categories as $category)
-                                        <option value="{{$category->name}}">{{$category->name}}</option>
+                                            <option value="{{$category->name}}">{{$category->name}}</option>
                                         @endforeach
-                                    </select>
-                                    <td><span><select name="category_span" style="max-width:350px;"></select></span></td>
+                                    </select></span></td>
                                 </tr>
                                 <tr>
                                     <td><label>Image</label></td>                         
@@ -61,9 +60,7 @@
 @endsection
 	
 <!--===============================================================================================-->
-    <script src="{{ asset('js/select2.min.js') }}" defer></script>
-    <script src="{{ asset('js/select-togglebutton.js') }}" defer></script>
-	
+        
 	<script type="text/javascript" >
 		$(document).ready(function() {
 			$('select').togglebutton();
